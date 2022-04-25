@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+.componentContent {
+  margin-top: 30px;
+}
+
+.header {
+  text-align: center;
+  color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.contentList {
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.contentListItem {
+  margin-bottom: 20px;
+}
+
+.missingDataMessage {
+  font-weight: bold;
+  text-align: center;
+  color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}

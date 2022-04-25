@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from './service/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'security-app-frontend';
+  title = 'Security App';
+
+  constructor(private authenticationService: AuthenticationService, private router: Router) {}
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['']);
+  }
 }

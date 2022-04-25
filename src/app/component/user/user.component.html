@@ -1,0 +1,25 @@
+<div *ngIf="(users && users.length) else missingDataMessage">
+  <h1 class="header"></h1>
+  <div class="contentList">
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row" *ngFor="let user of users">
+          <td>{{ user.username }}</td>
+          <td>{{ user.email  }}</td>
+          <td>{{ user.role  }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #missingDataMessage>
+  <p class="missingDataMessage">Warning: Unable to fetch users.</p>
+</ng-template>
