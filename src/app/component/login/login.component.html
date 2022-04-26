@@ -1,7 +1,12 @@
 <div class="container">
   <h1>Login</h1>
-  <form class="contentList">
-    <input type="text">
-    <input type="password">
+  <form [formGroup]="loginForm" class="contentList" (ngSubmit)="login()">
+    <div class="col-md-8 d-flex flex-column">
+      <label for="username">Username:</label>
+      <input type="text" formControlName="username" required>
+      <label for="password">Password:</label>
+      <input type="password" formControlName="password" required>
+    </div>
+    <button type="submit" class="btn btn-success px-5 mt-2">Submit</button>
   </form>
 </div>

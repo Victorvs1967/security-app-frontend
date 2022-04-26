@@ -8,6 +8,7 @@ import { QuestionAndAnswerComponent } from './component/question-and-answer/ques
 import { AnnouncementComponent } from './component/announcement/announcement.component';
 import { UserComponent } from './component/user/user.component';
 import { LoginComponent } from './component/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,8 @@ import { LoginComponent } from './component/login/login.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
