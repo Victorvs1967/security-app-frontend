@@ -10,6 +10,7 @@ import { AuthenticationService } from 'src/app/service/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
+  public message!: string;
   public loginForm!: FormGroup;
 
   constructor(private auth: AuthenticationService, private formBuilder: FormBuilder, private router: Router) { }
@@ -23,8 +24,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.login(this.loginForm.value.username, this.loginForm.value.password)
-      .subscribe(data => console.log(data));
-    if (this.auth.isUserAuthenticated()) this.router.navigate(['/announcement']);
+      .subscribe(data => {
+        this.loginForm.reset();
+        if (this.auth.isUserAuthenticated()) this.router.navigate(['user']);
+      });
   }
 
 }

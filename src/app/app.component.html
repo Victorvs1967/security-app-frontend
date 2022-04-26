@@ -2,9 +2,9 @@
   <div class="navigationBarTitle navbar-brand">{{ title }}</div>
   <a class="nav-tabs navigationBarLink" routerLink="/">Home</a>
   <a class="nav-tabs navigationBarLink" routerLink="/questionsAndAnswers">Q&A</a>
-  <a class="nav-tabs navigationBarLink" routerLink="/users">User</a>
+  <a class="nav-tabs navigationBarLink" routerLink="/user">Users</a>
   <div class="authButtons">
-    <a *ngIf="true else logoutButton" class="nav-tabs navigationBarLink" routerLink="/login">Login</a>
+    <a *ngIf="!isAuthenticated else logoutButton" class="nav-tabs navigationBarLink" routerLink="/login">Login</a>
     <ng-template #logoutButton>
       <a class="nav-tabs navigationBarLink" (click)="logout()">Logout</a>
     </ng-template>

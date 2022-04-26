@@ -10,10 +10,17 @@ import { AuthenticationService } from './service/authentication.service';
 export class AppComponent {
   title = 'Security App';
 
+  isAuthenticated: boolean = false;
+
   constructor(private authenticationService: AuthenticationService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.isAuthenticated = this.authenticationService.isUserAuthenticated();
+  }
 
   logout() {
     this.authenticationService.logout();
+    window.location.reload();
     this.router.navigate(['']);
   }
 }

@@ -4,31 +4,38 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { RestEndpointConstants } from '../config/rest-endpoint-constants';
+import { TokenResponse } from '../model/token-response.model';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  readonly USER_NAME: string = 'sessionUser';
-
   constructor(private http: HttpClient) { }
 
-  public login(username: string, password: string): Observable<any> {
-    const headers = new HttpHeaders({ authorization: 'Basic '.concat(username).concat(':'.concat(password)) } );
-    this.http.get(environment.backendUrl.concat(RestEndpointConstants.LOGIN_ENDPOINT), { headers: headers })
-      .pipe(map((response: any) => {
-        sessionStorage.setItem(this.USER_NAME, response.username);
-        return response;
+  public signUp(user: User): Observable<User> {
+    return this.http.post<User>(environment.backendUrl.concat(RestEndpointConstants.SIGNUP_ENDPOINT), user);
+  }
+
+  public login(username: string, password: string): Observable<TokenResponse> {
+    console.log(RestEndpointConstants.USER_TOKEN);
+    const user = new User();
+    user.username = username;
+    user.password = password
+    return this.http.post<TokenResponse>(environment.backendUrl.concat(RestEndpointConstants.LOGIN_ENDPOINT), user)
+      .pipe(map((token: any) => {
+        sessionStorage.clear();
+        sessionStorage.setItem(RestEndpointConstants.USER_TOKEN, token)
+        return token;
       }));
-    return new Observable<any>();
   }
 
   public logout() {
-    sessionStorage.removeItem(this.USER_NAME);
+    sessionStorage.clear();
   }
 
   public isUserAuthenticated(): boolean {
-    return sessionStorage.getItem(this.USER_NAME) ? true : false;
+    return sessionStorage.getItem(RestEndpointConstants.USER_TOKEN) ? true : false;
   }
 }

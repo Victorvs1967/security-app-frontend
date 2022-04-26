@@ -1,19 +1,36 @@
-<div *ngIf="(users && users.length) else missingDataMessage">
-  <h1 class="header"></h1>
+<!-- <div *ngIf="user else missingDataMessage" class="card mx-auto w-50">
+    <div class="card-body">
+      <h1 class="card-title header">{{ user.username }}</h1>
+      <div>
+        <ul class="contentList">
+          <li class="contentListItem">User email: <strong>{{ user.email  }}</strong></li>
+          <li class="contentListItem">Created date: <strong>{{ user.onCreate | date: 'dd/MM/yyyy, HH:mm:ss' }}</strong></li>
+          <li class="contentListItem">User role: <strong>{{ user.role  }}</strong></li>
+        </ul>
+      </div>
+    </div>
+</div> -->
+
+<div class="container" *ngIf="(users && users.length) else missingDataMessage">
+  <h1 class="header">Users</h1>
   <div class="contentList">
     <table class="table table-striped">
       <thead class="table-dark">
         <tr>
           <th scope="col">Username</th>
           <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Created</th>
           <th scope="col">Role</th>
         </tr>
       </thead>
       <tbody>
         <tr scope="row" *ngFor="let user of users">
           <td>{{ user.username }}</td>
-          <td>{{ user.email  }}</td>
-          <td>{{ user.role  }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.onCreate | date: 'dd/MM/yyyy, HH:mm:ss' }}</td>
+          <td>{{ user.role }}</td>
         </tr>
       </tbody>
     </table>
