@@ -1,15 +1,17 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="navigationBarTitle navbar-brand">{{ title }}</div>
-  <a class="nav-tabs navigationBarLink" routerLink="/announcement">Home</a>
-  <a class="nav-tabs navigationBarLink" routerLink="/questionsandanswers">Q&A</a>
-  <a class="nav-tabs navigationBarLink" routerLink="/user">Users</a>
-  <div class="authButtons">
-    <a *ngIf="!isAuthenticated else logoutButton" class="nav-tabs navigationBarLink" routerLink="/login">Login</a>
-    <ng-template #logoutButton>
-      <a class="nav-tabs navigationBarLink" (click)="logout()">Logout</a>
-    </ng-template>
+  <div class="nav col-md-10 justify-content-end">
+    <a class="nav-tabs navigationBarLink" routerLink="/announcement">Home</a>
+    <a class="nav-tabs navigationBarLink" routerLink="/questionsandanswers">Q&A</a>
+    <a class="nav-tabs navigationBarLink" routerLink="/user">Users</a>
+    <div class="authButtons">
+      <a *ngIf="isLogin | async else loginButton" class="nav-tabs navigationBarLink" (click)="logout()">Logout</a>
+      <ng-template #loginButton>
+        <a class="nav-tabs navigationBarLink" routerLink="/login">Login</a>
+      </ng-template>
+    </div>
   </div>
 </nav>
-<div class="componentContent">
+<div class="container componentContent">
   <router-outlet></router-outlet>
 </div>

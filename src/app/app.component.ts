@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AuthenticationService } from './service/authentication.service';
 
 @Component({
@@ -10,17 +11,16 @@ import { AuthenticationService } from './service/authentication.service';
 export class AppComponent {
   title = 'Security App';
 
-  isAuthenticated: boolean = false;
+  isLogin: Observable<boolean> | undefined;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) {}
+  constructor(private auth: AuthenticationService, private router: Router) {}
 
   ngOnInit(): void {
-    this.isAuthenticated = this.authenticationService.isUserAuthenticated();
+    this.isLogin = this.auth.isLoggedIn;
+    this.isLogin.subscribe(data => console.log(data));
   }
 
   logout() {
-    this.authenticationService.logout();
-    window.location.reload();
-    this.router.navigate(['']);
+    this.auth.logout();
   }
 }

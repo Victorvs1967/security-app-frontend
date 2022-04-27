@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { RestEndpointConstants } from '../config/rest-endpoint-constants';
@@ -11,6 +11,12 @@ import { User } from '../model/user.model';
   providedIn: 'root'
 })
 export class AuthenticationService {
+
+  private loggedIn = new BehaviorSubject<boolean>(false);
+
+  get isLoggedIn(): Observable<boolean> {
+    return this.loggedIn.asObservable();
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -25,16 +31,16 @@ export class AuthenticationService {
     return this.http.post<TokenResponse>(environment.backendUrl.concat(RestEndpointConstants.LOGIN_ENDPOINT), user)
       .pipe(map((token: any) => {
         sessionStorage.clear();
+        this.loggedIn.next(true);
         sessionStorage.setItem(RestEndpointConstants.USER_TOKEN, token)
+        setTimeout(() => {}, 500);
         return token;
       }));
   }
 
   public logout() {
+    this.loggedIn.next(false);
     sessionStorage.clear();
-  }
-
-  public isUserAuthenticated(): boolean {
-    return sessionStorage.getItem(RestEndpointConstants.USER_TOKEN) ? true : false;
+    setTimeout(() => { }, 500);
   }
 }

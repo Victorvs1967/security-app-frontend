@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.loginForm.value.username, this.loginForm.value.password)
       .subscribe(data => {
         this.loginForm.reset();
-        if (this.auth.isUserAuthenticated()) this.router.navigate(['announcement']);
+        if (this.auth.isLoggedIn) this.router.navigate(['announcement']);
       });
   }
 
