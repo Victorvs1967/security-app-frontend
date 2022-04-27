@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="navigationBarTitle navbar-brand">{{ title }}</div>
-  <a class="nav-tabs navigationBarLink" routerLink="/">Home</a>
-  <a class="nav-tabs navigationBarLink" routerLink="/questionsAndAnswers">Q&A</a>
+  <a class="nav-tabs navigationBarLink" routerLink="/announcement">Home</a>
+  <a class="nav-tabs navigationBarLink" routerLink="/questionsandanswers">Q&A</a>
   <a class="nav-tabs navigationBarLink" routerLink="/user">Users</a>
   <div class="authButtons">
     <a *ngIf="!isAuthenticated else logoutButton" class="nav-tabs navigationBarLink" routerLink="/login">Login</a>

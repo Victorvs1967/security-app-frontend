@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -9,9 +9,15 @@ import { RestEndpointConstants } from '../config/rest-endpoint-constants';
 })
 export class QuestionAndAnswerService {
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'authorization': 'Bearer '.concat(sessionStorage.getItem(RestEndpointConstants.USER_TOKEN) || '')
+    })
+  };
+
   constructor(private http: HttpClient) { }
 
   public getQuestionAndAnswers(): Observable<any> {
-    return this.http.get(environment.backendUrl.concat(RestEndpointConstants.QUESTION_AND_ANSWER_ENDPOINT), { observe: 'body', responseType: 'json' });
+    return this.http.get(environment.backendUrl.concat(RestEndpointConstants.QUESTIONS_AND_ANSWERS_ENDPOINT), this.httpOptions);
   }
 }

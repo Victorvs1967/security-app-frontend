@@ -8,7 +8,7 @@ import { UserComponent } from './component/user/user.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'announcement', component: AnnouncementComponent },
-  { path: 'questionsAndAnswers', component: QuestionAndAnswerComponent },
+  { path: 'questionsandanswers', component: QuestionAndAnswerComponent },
   { path: 'user', component: UserComponent },
   { path: 'login', component: LoginComponent },
 ];

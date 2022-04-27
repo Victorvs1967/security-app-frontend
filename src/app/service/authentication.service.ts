@@ -19,7 +19,6 @@ export class AuthenticationService {
   }
 
   public login(username: string, password: string): Observable<TokenResponse> {
-    console.log(RestEndpointConstants.USER_TOKEN);
     const user = new User();
     user.username = username;
     user.password = password

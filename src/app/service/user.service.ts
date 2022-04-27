@@ -12,21 +12,17 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'authorization': 'Bearer '.concat(sessionStorage.getItem(RestEndpointConstants.USER_TOKEN) || '')
+    })
+  };
+
   public getUser(): Observable<User> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'authorization': 'Bearer '.concat(sessionStorage.getItem(RestEndpointConstants.USER_TOKEN) || '')
-      })
-    };
-    return this.http.get(environment.backendUrl.concat(RestEndpointConstants.USER_ENDPOINT), httpOptions);
+    return this.http.get(environment.backendUrl.concat(RestEndpointConstants.USER_ENDPOINT), this.httpOptions);
   }
 
   public getUsers(): Observable<User[]> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'authorization': 'Bearer '.concat(sessionStorage.getItem(RestEndpointConstants.USER_TOKEN) || '')
-      })
-    };
-    return this.http.get<User[]>(environment.backendUrl.concat(RestEndpointConstants.USERS_ENDPOINT), httpOptions);
+    return this.http.get<User[]>(environment.backendUrl.concat(RestEndpointConstants.USERS_ENDPOINT), this.httpOptions);
   }
 }
