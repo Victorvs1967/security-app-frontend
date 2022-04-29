@@ -1,17 +1,17 @@
 <div *ngIf="(announcements && announcements.length) else missingDataMessage">
-  <h1 class="header"></h1>
-  <ul class="contentList list-group list-group-flush">
-    <li class="contentListItem list-group-item text-center" *ngFor="let announcement of announcements">
-      <h4 class="header">{{ announcement.headline }}</h4>
-      <h6>- {{ announcement.date | date: 'dd/MM/yyyy, HH:mm:ss' }}</h6>
-      <br/>
-      <p>{{ announcement.text }}</p>
-    </li>
-  </ul>
+  <h1 class="header">Announcements</h1>
+  <mat-list class="contentList"  role="list">
+    <mat-list-item class="contentListItem" role="listitem" *ngFor="let announcement of announcements">
+        <h2 matLine class="header">{{ announcement.headline }}</h2>
+        <h4 matLine>- {{ announcement.date | date: 'dd/MM/yyyy, HH:mm:ss' }}</h4>
+        <p matLine>{{ announcement.text }}</p>
+        <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
 </div>
 
 <ng-template #missingDataMessage>
-<p class="missingDataMessage">
-  Warning: Unable to fetch questions and announcements.
-</p>
+  <p class="missingDataMessage">
+    Warning: Unable to fetch questions and announcements.
+  </p>
 </ng-template>

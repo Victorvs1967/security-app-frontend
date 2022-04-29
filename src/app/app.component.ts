@@ -17,10 +17,10 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.isLogin = this.auth.isLoggedIn;
-    this.isLogin.subscribe(data => console.log(data));
   }
 
   logout() {
     this.auth.logout();
+    this.router.navigate(['/logout']);
   }
 }

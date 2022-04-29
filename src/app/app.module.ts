@@ -9,6 +9,9 @@ import { AnnouncementComponent } from './component/announcement/announcement.com
 import { UserComponent } from './component/user/user.component';
 import { LoginComponent } from './component/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialUiModule } from './module/material-ui/material-ui.module';
+import { LogoutComponent } from './component/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     QuestionAndAnswerComponent,
     AnnouncementComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MaterialUiModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

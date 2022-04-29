@@ -1,23 +1,51 @@
+html, body { 
+  height: 100%; 
+}
+
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 .componentContent {
   margin-top: 30px;
 }
 
 .header {
+  font-weight: 500 !important;
   text-align: center;
   color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
 }
 
 .contentList {
   list-style: none;
-  margin-top: 50px;
 }
 
 .contentListItem {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
 }
 
 .missingDataMessage {
   font-weight: bold;
   text-align: center;
   color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.form-card {
+  max-width: 60%;
+  margin: 80px auto;
+}
+
+.mat-card-actions {
+  padding: 8px !important;
+}
+
+.mat-list-text {
+  margin-bottom: 20px;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }

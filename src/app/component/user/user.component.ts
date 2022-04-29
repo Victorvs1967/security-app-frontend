@@ -9,6 +9,8 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class UserComponent implements OnInit {
 
+  displayedColumns = ['username', 'email', 'phone', 'created', 'role'];
+
   user?: User;
   users?: User[];
 
@@ -18,10 +20,6 @@ export class UserComponent implements OnInit {
     this.userService
       .getUsers()
       .subscribe(data => this.users = data);
-
-      // this.userService
-      // .getUser()
-      // .subscribe(data => this.user = data);
   }
 
 }

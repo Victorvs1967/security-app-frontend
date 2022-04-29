@@ -15,6 +15,7 @@ export class AuthenticationService {
   private loggedIn = new BehaviorSubject<boolean>(false);
 
   get isLoggedIn(): Observable<boolean> {
+    this.loggedIn.next(sessionStorage.getItem(RestEndpointConstants.USER_TOKEN) ? true : false);
     return this.loggedIn.asObservable();
   }
 
