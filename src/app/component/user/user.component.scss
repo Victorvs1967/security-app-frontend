@@ -1,5 +1,6 @@
 table {
-  width: 100%;
+  min-width: 90%;
+  margin: auto;
 }
 
 .mat-header-row {
@@ -9,4 +10,8 @@ table {
 .mat-header-cell {
   font-size: 1rem;
   color: white;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, .1);
 }
